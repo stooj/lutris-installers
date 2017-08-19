@@ -1,0 +1,17 @@
+exe: game/start.sh
+files:
+- game: N/A:Please select the GOG.com Linux installer
+- unzip: http://lutris.net/files/tools/unzip.tar.gz
+game:
+  appid: 375820
+installer:
+- extract:
+    dst: $CACHE
+    file: $unzip
+- execute:
+    args: $game -d "$GAMEDIR" "data/noarch/*"
+    description: Extracting game data, it will take a while...
+    file: $CACHE/unzip
+- rename:
+    dst: $GAMEDIR/game
+    src: $GAMEDIR/data/noarch
